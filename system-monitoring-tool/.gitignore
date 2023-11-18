@@ -6,6 +6,8 @@ myenv/
 
 celerybeat-schedule
 
+system-monitoring-tool/celerybeat-schedule
+
 *.pyc
 
 system_monitoring_tool/__pycache__/
