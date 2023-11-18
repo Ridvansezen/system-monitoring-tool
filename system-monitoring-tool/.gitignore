@@ -1,0 +1,11 @@
+.idea/
+
+__pycache__/
+
+myenv/
+
+celerybeat-schedule
+
+*.pyc
+
+system_monitoring_tool/__pycache__/
