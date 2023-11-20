@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Monitoring</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>System Monitoring Data</h1>
+        <table class="monitoring-table">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>RAM Usage (%)</th>
+                    <th>CPU Usage (%)</th>
+                    <th>HDD Usage (%)</th>
+                    <th>Network Requests</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in data %}
+                    <tr>
+                        <td>{{ formatted_timestamp|default:"No date" }}</td>
+                        <td>{{ entry.ram_usage }}</td>
+                        <td>{{ entry.cpu_usage }}</td>
+                        <td>{{ entry.hdd_usage }}</td>
+                        <td>{{ entry.network_requests }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

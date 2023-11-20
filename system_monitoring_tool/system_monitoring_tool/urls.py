@@ -20,10 +20,10 @@ from rest_framework.routers import DefaultRouter
 from monitoring.views import SystemMonitoringViewSet
 
 router = DefaultRouter()
-router.register(r'system-monitoring', SystemMonitoringViewSet, basename='system-monitoring')
+router.register(r'', SystemMonitoringViewSet, basename='system-monitoring')
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
 ]
