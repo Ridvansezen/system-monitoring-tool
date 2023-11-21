@@ -4,25 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('monitoring', '0001_initial'),
+        ("monitoring", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='systemmonitoringdata',
-            name='cpu_usage',
+            model_name="systemmonitoringdata",
+            name="cpu_usage",
             field=models.FloatField(default=0.0),
         ),
         migrations.AlterField(
-            model_name='systemmonitoringdata',
-            name='hdd_usage',
+            model_name="systemmonitoringdata",
+            name="hdd_usage",
             field=models.FloatField(default=0.0),
         ),
         migrations.AlterField(
-            model_name='systemmonitoringdata',
-            name='ram_usage',
+            model_name="systemmonitoringdata",
+            name="ram_usage",
             field=models.FloatField(default=0.0),
         ),
     ]
