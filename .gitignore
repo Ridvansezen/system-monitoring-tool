@@ -3,3 +3,22 @@ env/
 system_monitoring_tool/monitoring/__pycache__/
 
 system_monitoring_tool/__pycache__/
+
+system_monitoring_tool/celerybeat-schedule.bak
+
+system_monitoring_tool/celerybeat-schedule.dat
+
+system_monitoring_tool/celerybeat-schedule.dat
+
+system_monitoring_tool/system_monitoring/__init__.py
+
+system_monitoring_tool/system_monitoring/__pycache__/
+
+system_monitoring_tool/celerybeat-schedule.dir
+
+system_monitoring_tool/monitoring/migrations/__pycache__/
+
+
+system_monitoring_tool/monitoring/migrations/
+
+system_monitoring_tool/monitoring/__init__.py
