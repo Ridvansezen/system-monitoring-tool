@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8ra0w-vk8a@qmj+5w3$pyyih=j$*d@b-qh%d((=o48m0tkb#+d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'monitoring',
     'rest_framework',
+    'system_monitoring',
+    'system_monitoring.celery',
 ]
 
 MIDDLEWARE = [
@@ -49,9 +51,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
-ROOT_URLCONF = 'system_monitoring_tool.urls'
+ROOT_URLCONF = 'system_monitoring.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'system_monitoring_tool.wsgi.application'
+WSGI_APPLICATION = 'system_monitoring.wsgi.application'
 
 
 # Database
@@ -84,8 +87,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'system_monitoring_tool',
-        'HOST': 'mongodb://localhost:27017',
-        'PORT': 27017,
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': 'mongodb://localhost:27017',
+            'port': 27017,
+            'authSource': 'admin',
+        }
     }
 }
 
@@ -135,3 +142,17 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BROKER_URL = "mongodb://localhost:27017/system_monitoring_tool"
+CELERY_RESULT_BACKEND = "mongodb://localhost:27017/system_monitoring_tool"
+BROKER_URL = 'mongodb://localhost:27017/system_monitoring_tool'
+
+from datetime import timedelta
+
+CELERY_BEAT_SCHEDULE = {
+    "update-system-data": {
+        "task": "monitoring.tasks.update_system_data",
+        "schedule": timedelta(seconds=5),
+    },
+}
+
