@@ -43,3 +43,14 @@ h1 {
     transition: 0.3s;
     background-color: #d6d6d6;
 }
+
+#systemChartContainer {
+    max-width: 1200px; /* Ölçüleri ayarlayabilirsiniz */
+    margin: auto;
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+
+#systemChart {
+    height: 600px; /* Grafiğin yüksekliğini ayarlayabilirsiniz */
+}

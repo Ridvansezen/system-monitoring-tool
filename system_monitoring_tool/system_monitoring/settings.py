@@ -25,33 +25,36 @@ SECRET_KEY = "django-insecure-8ra0w-vk8a@qmj+5w3$pyyih=j$*d@b-qh%d((=o48m0tkb#+d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "monitoring",
-    "rest_framework",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'monitoring',
+    'rest_framework',
+    'system_monitoring',
+    'system_monitoring.celery',
 ]
 
 MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
-ROOT_URLCONF = "system_monitoring_tool.urls"
+ROOT_URLCONF = 'system_monitoring.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +72,11 @@ TEMPLATES = [
     },
 ]
 
+<<<<<<< HEAD:system_monitoring_tool/system_monitoring_tool/settings.py
 WSGI_APPLICATION = "system_monitoring_tool.wsgi.application"
+=======
+WSGI_APPLICATION = 'system_monitoring.wsgi.application'
+>>>>>>> BE-2:system_monitoring_tool/system_monitoring/settings.py
 
 
 # Database
@@ -79,6 +86,7 @@ from mongoengine import connect
 
 connect("system_monitoring_tool", host="mongodb://localhost:27017")
 
+<<<<<<< HEAD:system_monitoring_tool/system_monitoring_tool/settings.py
 #
 # DATABASES = {
 #     "default": {
@@ -88,6 +96,21 @@ connect("system_monitoring_tool", host="mongodb://localhost:27017")
 #         "PORT": 27017,
 #     }
 # }
+=======
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'system_monitoring_tool',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            'host': 'mongodb://localhost:27017',
+            'port': 27017,
+            'authSource': 'admin',
+        }
+    }
+}
+>>>>>>> BE-2:system_monitoring_tool/system_monitoring/settings.py
 
 
 # Password validation
@@ -134,8 +157,26 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
+<<<<<<< HEAD:system_monitoring_tool/system_monitoring_tool/settings.py
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 CELERY_BROKER_URL = "redis://localhost:6379/0"
 CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+=======
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CELERY_BROKER_URL = "mongodb://localhost:27017/system_monitoring_tool"
+CELERY_RESULT_BACKEND = "mongodb://localhost:27017/system_monitoring_tool"
+BROKER_URL = 'mongodb://localhost:27017/system_monitoring_tool'
+
+from datetime import timedelta
+
+CELERY_BEAT_SCHEDULE = {
+    "update-system-data": {
+        "task": "monitoring.tasks.update_system_data",
+        "schedule": timedelta(seconds=5),
+    },
+}
+
+>>>>>>> BE-2:system_monitoring_tool/system_monitoring/settings.py
