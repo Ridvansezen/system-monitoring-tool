@@ -72,11 +72,7 @@ TEMPLATES = [
     },
 ]
 
-<<<<<<< HEAD:system_monitoring_tool/system_monitoring_tool/settings.py
-WSGI_APPLICATION = "system_monitoring_tool.wsgi.application"
-=======
 WSGI_APPLICATION = 'system_monitoring.wsgi.application'
->>>>>>> BE-2:system_monitoring_tool/system_monitoring/settings.py
 
 
 # Database
@@ -86,17 +82,6 @@ from mongoengine import connect
 
 connect("system_monitoring_tool", host="mongodb://localhost:27017")
 
-<<<<<<< HEAD:system_monitoring_tool/system_monitoring_tool/settings.py
-#
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "sqlite3",
-#         "NAME": "system_monitoring_tool",
-#         "HOST": "mongodb://localhost:27017",
-#         "PORT": 27017,
-#     }
-# }
-=======
 
 DATABASES = {
     'default': {
@@ -110,7 +95,6 @@ DATABASES = {
         }
     }
 }
->>>>>>> BE-2:system_monitoring_tool/system_monitoring/settings.py
 
 
 # Password validation
@@ -157,13 +141,6 @@ STATICFILES_DIRS = [
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-<<<<<<< HEAD:system_monitoring_tool/system_monitoring_tool/settings.py
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-CELERY_BROKER_URL = "redis://localhost:6379/0"
-CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
-=======
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CELERY_BROKER_URL = "mongodb://localhost:27017/system_monitoring_tool"
@@ -179,4 +156,3 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
->>>>>>> BE-2:system_monitoring_tool/system_monitoring/settings.py
