@@ -8,7 +8,6 @@ from.service import save_system_data
 
 
 class SystemMonitoringViewSet(viewsets.ModelViewSet):
-
     def list(self, request):
         update_system_data()
         data = SystemMonitoringData.objects.order_by('-timestamp')[:10]
